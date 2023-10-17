@@ -124,6 +124,7 @@ public struct FloatingTextField: View {
             .multilineTextAlignment(.leading)
             .font(configuration.font)
             .focused($isFocused)
+            .disabled(configuration.disabled)
     }
 
     private var textField: some View {
@@ -132,6 +133,7 @@ public struct FloatingTextField: View {
             .multilineTextAlignment(.leading)
             .font(configuration.font)
             .focused($isFocused)
+            .disabled(configuration.disabled)
     }
 
     private var contentView: some View {

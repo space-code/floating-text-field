@@ -5,7 +5,7 @@
 
 import SwiftUI
 
-/// <#Description#>
+// A view that reads the geometry of its parent view and updates a binding variable with its size.
 struct BackgroundGeometryReader: View {
     // MARK: Properties
 
@@ -14,15 +14,11 @@ struct BackgroundGeometryReader: View {
     // MARK: View
 
     var body: some View {
-        GeometryReader(content: placeholderHeight(_:))
-    }
-
-    // MARK: Private
-
-    private func placeholderHeight(_ geometry: GeometryProxy) -> some View {
-        DispatchQueue.main.async {
-            size = geometry.size
+        GeometryReader { geometry in
+            Color.clear
+                .onAppear {
+                    size = geometry.size
+                }
         }
-        return Color.clear
     }
 }
