@@ -18,7 +18,7 @@ public extension FloatingTextField {
         return self
     }
 
-    func textFont(_ font: Font) -> FloatingTextField {
+    func font(_ font: Font) -> FloatingTextField {
         configuration.font = font
         return self
     }
@@ -33,8 +33,8 @@ public extension FloatingTextField {
         return self
     }
 
-    func borderCornerRadius(_ cornerRadius: CGFloat) -> FloatingTextField {
-        configuration.borderCornerRadius = cornerRadius
+    func cornerRadius(_ cornerRadius: CGFloat) -> FloatingTextField {
+        configuration.cornerRadius = cornerRadius
         return self
     }
 
@@ -48,7 +48,7 @@ public extension FloatingTextField {
         return self
     }
 
-    func titleColor(_ color: Color) -> FloatingTextField {
+    func textColor(_ color: Color) -> FloatingTextField {
         configuration.titleColor = color
         return self
     }

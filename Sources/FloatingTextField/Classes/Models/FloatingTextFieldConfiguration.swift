@@ -35,7 +35,7 @@ final class FloatingTextFieldConfiguration: ObservableObject {
     @Published var focusedBorderColor: Color
 
     /// The corner radius of the text field's border.
-    @Published var borderCornerRadius: CGFloat
+    @Published var cornerRadius: CGFloat
 
     /// The amount of padding beneath the placeholder text.
     @Published var placeholderBottomPadding: CGFloat
@@ -60,7 +60,7 @@ final class FloatingTextFieldConfiguration: ObservableObject {
         borderWidth: CGFloat = .zero,
         borderColor: Color = .gray,
         focusedBorderColor: Color = .gray,
-        borderCornerRadius: CGFloat = .zero,
+        cornerRadius: CGFloat = .zero,
         placeholderBottomPadding: CGFloat = .zero,
         disabled: Bool = false,
         leftView: AnyView? = nil,
@@ -74,7 +74,7 @@ final class FloatingTextFieldConfiguration: ObservableObject {
         self.borderWidth = borderWidth
         self.borderColor = borderColor
         self.focusedBorderColor = focusedBorderColor
-        self.borderCornerRadius = borderCornerRadius
+        self.cornerRadius = cornerRadius
         self.placeholderBottomPadding = placeholderBottomPadding
         self.disabled = disabled
         self.leftView = leftView

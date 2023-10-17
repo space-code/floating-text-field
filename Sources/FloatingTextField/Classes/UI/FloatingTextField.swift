@@ -94,7 +94,7 @@ public struct FloatingTextField: View {
             .padding()
             .frame(maxHeight: geometry.size.height)
             .overlay(
-                RoundedRectangle(cornerRadius: configuration.borderCornerRadius)
+                RoundedRectangle(cornerRadius: configuration.cornerRadius)
                     .strokeBorder(
                         isFocused ? configuration.borderColor : configuration.focusedBorderColor,
                         lineWidth: configuration.borderWidth
@@ -184,13 +184,13 @@ private extension TimeInterval {
             ForEach(ColorScheme.allCases, id: \.self) {
                 FloatingTextField(.constant(""), placeholder: "placeholder")
                     .borderWidth(1)
-                    .borderCornerRadius(12)
+                    .cornerRadius(12)
                     .frame(height: 60.0)
                     .preferredColorScheme($0)
 
                 FloatingTextField(.constant("text"), placeholder: "placeholder")
                     .borderWidth(1)
-                    .borderCornerRadius(12)
+                    .cornerRadius(12)
                     .focusedBorderColor(.red)
                     .frame(height: 60.0)
                     .preferredColorScheme($0)
