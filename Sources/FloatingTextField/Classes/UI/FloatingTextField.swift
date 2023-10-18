@@ -36,6 +36,8 @@ public struct FloatingTextField: View {
     @State private var placeholderSize: CGSize = .zero
     /// The text field size.
     @State private var textFieldSize: CGSize = .zero
+    /// The left view size.
+    @State private var leftViewSize: CGSize = .zero
 
     /// When focus moves to the view, the binding sets the bound value to true.
     @State private var isSelected = false
@@ -49,6 +51,10 @@ public struct FloatingTextField: View {
     /// A bool value that indicates whether the placeholder is shown or not.
     private var isTopPlaceholderVisible: Bool {
         !text.isEmpty || isSelected
+    }
+
+    private var leftSideOffset: CGFloat {
+        configuration.leftView != nil ? leftViewSize.width + .spacing : .zero
     }
 
     /// The title of the text view, describing its purpose.
@@ -74,14 +80,15 @@ public struct FloatingTextField: View {
                 ZStack(alignment: .leading) {
                     topPlaceholderView
                         .background(BackgroundGeometryReader(size: $placeholderSize))
-                        .opacity(!text.isEmpty || isSelected ? 1 : .zero)
-                        .offset(y: !text.isEmpty || isSelected ? -offset(for: placeholderSize) : .zero)
+                        .opacity(isTopPlaceholderVisible ? 1 : .zero)
+                        .offset(x: leftSideOffset, y: isTopPlaceholderVisible ? -offset(for: placeholderSize) : .zero)
 
-                    HStack(alignment: .center) {
+                    HStack(alignment: .center, spacing: .spacing) {
                         leftView
+                            .background(BackgroundGeometryReader(size: $leftViewSize))
                         contentView
                             .background(BackgroundGeometryReader(size: $textFieldSize))
-                            .offset(y: !text.isEmpty || isSelected ? offset(for: textFieldSize) : .zero)
+                            .offset(y: isTopPlaceholderVisible ? offset(for: textFieldSize) : .zero)
                         rightView
                     }
                 }
@@ -96,7 +103,7 @@ public struct FloatingTextField: View {
             .overlay(
                 RoundedRectangle(cornerRadius: configuration.cornerRadius)
                     .strokeBorder(
-                        isFocused ? configuration.borderColor : configuration.focusedBorderColor,
+                        isSelected ? configuration.borderColor : configuration.focusedBorderColor,
                         lineWidth: configuration.borderWidth
                     )
             )
@@ -142,7 +149,7 @@ public struct FloatingTextField: View {
                 placeholderView
             }
 
-            if configuration.isSecureEntry {
+            if configuration.isSecureTextEntry {
                 secureField
             } else {
                 textField
@@ -175,6 +182,10 @@ private extension TimeInterval {
     static let animationDuration = 0.178
 }
 
+private extension CGFloat {
+    static let spacing: CGFloat = 8.0
+}
+
 // MARK: - Previews
 
 #if DEBUG
@@ -191,7 +202,7 @@ private extension TimeInterval {
                 FloatingTextField(.constant("text"), placeholder: "placeholder")
                     .borderWidth(1)
                     .cornerRadius(12)
-                    .focusedBorderColor(.red)
+                    .focusedBorderColor(.gray)
                     .frame(height: 60.0)
                     .preferredColorScheme($0)
             }

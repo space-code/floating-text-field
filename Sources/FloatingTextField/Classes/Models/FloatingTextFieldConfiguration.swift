@@ -11,7 +11,7 @@ final class FloatingTextFieldConfiguration: ObservableObject {
     // MARK: Properties
 
     /// Determines whether the text input is treated as a secure entry (e.g., for passwords).
-    @Published var isSecureEntry: Bool
+    @Published var isSecureTextEntry: Bool
 
     /// The color of the title when the text field is in its default state.
     @Published var titleColor: Color
@@ -52,7 +52,7 @@ final class FloatingTextFieldConfiguration: ObservableObject {
     // MARK: Initialization
 
     init(
-        isSecureEntry: Bool = false,
+        isSecureTextEntry: Bool = false,
         titleColor: Color = .gray,
         placeholderColor: Color = .gray,
         placeholderFont: Font = .system(size: 15),
@@ -66,7 +66,7 @@ final class FloatingTextFieldConfiguration: ObservableObject {
         leftView: AnyView? = nil,
         rightView: AnyView? = nil
     ) {
-        self.isSecureEntry = isSecureEntry
+        self.isSecureTextEntry = isSecureTextEntry
         self.titleColor = titleColor
         self.placeholderColor = placeholderColor
         self.placeholderFont = placeholderFont

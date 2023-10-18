@@ -53,8 +53,8 @@ public extension FloatingTextField {
         return self
     }
 
-    func secureField(_ isSecureEntry: Bool) -> FloatingTextField {
-        configuration.isSecureEntry = isSecureEntry
+    func isSecureTextEntry(_ isSecureTextEntry: Bool) -> FloatingTextField {
+        configuration.isSecureTextEntry = isSecureTextEntry
         return self
     }
 
