@@ -38,16 +38,42 @@ final class FloatingTextFieldSnapshotTests: XCTestCase {
     func test_thatFloatingTextFieldShowsCustomizedView() {
         assertSnapshots(
             of: FloatingTextField(.constant(.text), placeholder: .placeholder)
-                .textFont(Font.system(size: 17.0))
+                .font(Font.system(size: 17.0))
                 .borderWidth(2.0)
                 .borderColor(.black)
                 .focusedBorderColor(.black)
-                .titleColor(Color.black)
+                .textColor(Color.black)
                 .placeholderFont(Font.system(size: 14.0))
                 .placeholderColor(.gray)
-                .borderCornerRadius(12.0),
+                .cornerRadius(12.0)
+                .placeholderBottomPadding(.zero)
+                .disabled(false)
+                .leftView { Image(systemName: "mail.fill").foregroundColor(.gray) }
+                .rightView { Image(systemName: "eye.fill").foregroundColor(.gray) },
             as: [.image(layout: .default, traits: .light)]
         )
+    }
+
+    func test_thatFloatingTextFieldShowsCustomizedView_whenCustomStyleDidSet() {
+        assertSnapshots(
+            of: FloatingTextField(.constant(.text), placeholder: .placeholder)
+                .textFieldStyle(style: TextFieldStyle()),
+            as: [.image(layout: .default, traits: .light)]
+        )
+    }
+}
+
+// MARK: FloatingTextFieldSnapshotTests.TextFieldStyle
+
+private extension FloatingTextFieldSnapshotTests {
+    struct TextFieldStyle: FloatingTextFieldStyle {
+        func body(content: FloatingTextField) -> FloatingTextField {
+            content
+                .font(Font.system(size: 17.0))
+                .borderWidth(1)
+                .borderColor(.gray)
+                .cornerRadius(8.0)
+        }
     }
 }
 
