@@ -1,4 +1,4 @@
-![FloatingTextField: A Customizable Text Field](https://raw.githubusercontent.com/space-code/space-code/dev/Resources/floating-text-field.png)
+![FloatingTextField: A Customizable Text Field](https://raw.githubusercontent.com/space-code/floating-text-field/dev/Resources/floating-text-field.png)
 
 <h1 align="center" style="margin-top: 0px;">floating-text-field</h1>
 
