@@ -30,7 +30,7 @@ final class FloatingTextFieldSnapshotTests: XCTestCase {
     func test_thatFloatingTextFieldShowsSecureField() {
         assertSnapshots(
             of: FloatingTextField(.constant(.text), placeholder: .placeholder)
-                .secureField(true),
+                .isSecureTextEntry(true),
             as: [.image(layout: .default, traits: .light)]
         )
     }
