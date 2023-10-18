@@ -1,3 +1,5 @@
+![FloatingTextField: A Customizable Text Field](https://raw.githubusercontent.com/space-code/space-code/dev/Resources/floating-text-field.png)
+
 <h1 align="center" style="margin-top: 0px;">floating-text-field</h1>
 
 <p align="center">
@@ -8,7 +10,7 @@
 </p>
 
 ## Description
-`floating-text-field` description.
+`floating-text-field` is a customizable text field.
 
 - [Usage](#usage)
 - [Requirements](#requirements)
@@ -20,7 +22,120 @@
 
 ## Usage
 
+### Basic Usage
+
+For basic usage, simply import the `FloatingTextField` package and set the text field height as follows:
+
+```swift
+import FloatingTextField
+
+struct ContentView: View {
+    @State private var username: String = ""
+
+    var body: some View {
+        FloatingTextFieldView($username, placeholder: "username")
+            .frame(height: 60.0)
+    }
+}
+```
+
+### Custom Fonts and Colors
+
+The `FloatingTextField` provides an opportunity to customize text font, text color, placeholder font, placeholder color, and more.
+
+```swift
+import FloatingTextField
+
+struct ContentView: View {
+    @State private var username: String = ""
+
+    var body: some View {
+        FloatingTextFieldView($username, placeholder: "username")
+            .font(Font.system(size: 17.0))
+            .placeholderFont(Font.system(size: 14.0))
+            .textColor(.black)
+            .placeholderColor(.gray)
+            .frame(height: 60.0)
+    }
+}
+```
+
+### Custom Styles
+
+You can create a text field style in two simple steps.
+
+1. Define a custom text field style as follows:
+
+```swift
+import FloatingTextField
+
+struct CustomTextFieldStyle: FloatingTextFieldStyle {
+    func body(content: FloatingTextField) -> FloatingTextField {
+        content
+            .font(Font.system(size: 17.0))
+            .placeholderFont(Font.system(size: 14.0))
+            .cornerRadius(12)
+            .placeholderBottomPadding(4.0)
+            .textColor(.black)
+            .placeholderColor(.gray)
+            .borderWidth(1)
+            .borderColor(.black)
+    }
+}
+```
+
+2. Apply this style using `textFieldStyle(_:)`:
+
+```swift
+struct ContentView: View {
+    @State private var username: String = ""
+
+    var body: some View {
+        FloatingTextFieldView($username, placeholder: "username")
+            .textFieldStyle(style: CustomTextFieldStyle())
+            .frame(height: 60.0)
+    }
+}
+```
+
+### Secure Text Entry
+
+The `FloatingTextField` can conceal sensitive data such as passwords. You can hide it by using the `isSecureTextEntry(_:)` modifier.
+
+```swift
+import FloatingTextField
+
+struct ContentView: View {
+    @State private var password: String = ""
+    @State private var isPasswordHidden: Bool = true
+
+    var body: some View {
+        FloatingTextField($password, placeholder: "Password")
+            .textFieldStyle(style: CustomTextFieldStyle())
+            .isSecureTextEntry(isPasswordHidden)
+            .leftView {
+                Image(systemName: "lock")
+                    .foregroundColor(.gray)
+            }
+            .rightView {
+                Button(
+                    action: { isPasswordHidden.toggle() },
+                    label: {
+                        Image(systemName: "eye.fill")
+                            .foregroundColor(.gray)
+                    }
+                )
+            }
+            .frame(height: 60.0)
+    }
+}
+```
+
 ## Requirements
+
+- iOS 15.0+
+- Xcode 14.0
+- Swift 5.7
 
 ## Installation
 ### Swift Package Manager
