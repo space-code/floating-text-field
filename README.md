@@ -12,6 +12,7 @@
 ## Description
 `floating-text-field` is a customizable text field.
 
+- [Visual Example](#visual-example)
 - [Usage](#usage)
 - [Requirements](#requirements)
 - [Installation](#installation)
@@ -19,6 +20,12 @@
 - [Contributing](#contributing)
 - [Author](#author)
 - [License](#license)
+
+## Visual Example
+
+The visual example of the `FloatingTextField`:
+
+![Example](Resources/examples/example.gif)
 
 ## Usage
 
